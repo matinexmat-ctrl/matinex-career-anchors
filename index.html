@@ -1298,7 +1298,7 @@ function onSeeResults() {
   pendingScores = computeScores();
 
   if (STATE.user) {
-    finalizeResults(STATE.user);
+    triggerCelebration(() => finalizeResults(STATE.user));
   } else {
     openAuthModal();
   }
@@ -1441,7 +1441,7 @@ async function completeAuth(user) {
       topAnchor: top, scores: JSON.stringify(STATE.scores)
     });
   } catch(e) { console.warn('logUser failed', e); }
-  finalizeResults(user);
+  triggerCelebration(() => finalizeResults(user));
 }
 
 function finalizeResults(user) {
