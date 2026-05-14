@@ -35,6 +35,9 @@
   --surface-soft: #F4F8FF;
   --shadow-glow: 0 24px 80px rgba(45,132,254,0.12);
   --accent: #1F6FEB;
+  --purple: #7C5AED;
+  --purple-soft: #EEF2FF;
+  --purple-deep: #5B21B6;
 
   --radius-card: 12px;
   --radius-btn: 10px;
@@ -87,6 +90,7 @@ h3 { font-size: 20px; font-weight: 700; line-height: 1.3; }
 
 /* === BUTTONS === */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: var(--radius-btn); font-weight: 600; font-size: 15px; transition: all 200ms ease; min-height: 48px; white-space: nowrap; }
+.btn-pill { border-radius: 999px; padding-left: 30px; padding-right: 30px; }
 .btn-primary { background: var(--blue); color: var(--white); }
 .btn-primary:hover:not(:disabled) { box-shadow: var(--shadow-btn); transform: translateY(-1px); }
 .btn-primary:disabled { background: #B8C5D6; cursor: not-allowed; }
@@ -139,6 +143,14 @@ h3 { font-size: 20px; font-weight: 700; line-height: 1.3; }
 .drawer-links a:hover { background: var(--canvas); color: var(--blue); }
 .drawer-foot { padding: 20px; border-top: 1px solid var(--border); }
 
+.btn-pill { border-radius: 999px; }
+.hoverable, .feature-card, .step, .stat-card, .anchor-acc, .faq-item, .chart-card, .cta-download, .test-card { transition: transform 250ms ease, box-shadow 250ms ease; }
+.hoverable:hover, .feature-card:hover, .step:hover, .stat-card:hover, .anchor-acc:hover, .faq-item:hover, .chart-card:hover, .cta-download:hover, .test-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(92,75,237,0.16); }
+
+#about { background: linear-gradient(180deg, rgba(124,90,237,0.14), rgba(255,255,255,0.95) 72%); }
+#about .section-head { color: #0f172a; }
+#about .feature-card { background: rgba(255,255,255,0.95); border-color: rgba(124,90,237,0.22); }
+#about .feature-icon { background: linear-gradient(135deg, rgba(124,90,237,0.16), rgba(93,164,255,0.18)); color: #5b21b6; }
 /* === HERO === */
 .hero { padding: calc(var(--nav-h) + 64px) 0 96px; background: radial-gradient(circle at top left, rgba(45,132,254,0.18), transparent 26%), radial-gradient(circle at bottom right, rgba(239,175,10,0.14), transparent 24%), linear-gradient(180deg, var(--canvas) 0%, var(--white) 100%); }
 .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; }
@@ -290,8 +302,9 @@ footer { background: var(--canvas); border-top: 1px solid var(--border); padding
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-col a { color: var(--dark); font-size: 14.5px; }
 .footer-col a:hover { color: var(--blue); }
-.footer-bottom { padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--grey); font-size: 13px; }
-
+  .footer-social { display: flex; gap: 12px; margin-top: 24px; }
+  .footer-social a { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(17,24,39,0.08); color: var(--dark); opacity: 0.45; pointer-events: none; }
+  .footer-social a svg { width: 18px; height: 18px; }
 /* === MODAL === */
 .modal-overlay { position: fixed; inset: 0; background: rgba(17,24,39,0.55); backdrop-filter: blur(4px); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 200ms; }
 .modal-overlay.open { opacity: 1; pointer-events: auto; }
@@ -515,7 +528,7 @@ footer { background: var(--canvas); border-top: 1px solid var(--border); padding
       </ul>
     </nav>
     <div class="nav-cta">
-      <button class="btn btn-secondary" id="navResults">View My Results</button>
+      <button class="btn btn-secondary btn-pill" id="navResults">View My Results</button>
       <button class="hamburger" id="hamburger" aria-label="Open menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -540,7 +553,7 @@ footer { background: var(--canvas); border-top: 1px solid var(--border); padding
     <li><a href="#faq" data-drawer-link>FAQ</a></li>
   </ul>
   <div class="drawer-foot">
-    <button class="btn btn-primary btn-block" id="drawerResults">View My Results</button>
+    <button class="btn btn-primary btn-pill btn-block" id="drawerResults">View My Results</button>
   </div>
 </aside>
 
@@ -580,8 +593,8 @@ footer { background: var(--canvas); border-top: 1px solid var(--border); padding
         <h1>Discover what truly <span class="accent">anchors your career.</span></h1>
         <p class="lead">Uncover the deep motivators that shape every professional choice you make. Get a personalized map of the values, talents, and needs driving your work — in under 10 minutes.</p>
         <div class="hero-ctas">
-          <a href="#test" class="btn btn-primary btn-lg">Start the Assessment →</a>
-          <button class="btn btn-secondary btn-lg" id="heroResults">View My Results</button>
+          <a href="#test" class="btn btn-primary btn-lg btn-pill">Start the Assessment →</a>
+          <button class="btn btn-secondary btn-lg btn-pill" id="heroResults">View My Results</button>
         </div>
         <div class="hero-meta">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Takes ~8 minutes</span>
@@ -756,6 +769,7 @@ footer { background: var(--canvas); border-top: 1px solid var(--border); padding
   </div>
 </section>
 
+  <img id="reportLogoImg" src="logo.png" alt="Matinex logo" style="display:none;width:1px;height:1px;visibility:hidden;" />
 </main>
 
 <!-- === FOOTER === -->
@@ -777,6 +791,13 @@ footer { background: var(--canvas); border-top: 1px solid var(--border); padding
         <h4>Resources</h4>
         <ul><li><a href="#test">Take the Test</a></li><li><a href="#faq">FAQ</a></li><li><a href="#" id="footerResults">View My Results</a></li></ul>
       </div>
+    </div>
+    <div class="footer-social">
+      <a href="#" aria-disabled="true" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5-3-5-3v6zm12-3c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v4z"/></svg></a>
+      <a href="#" aria-disabled="true" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48s1.34 2.98 2.98 2.98 2.98-1.34 2.98-2.98S6.62 3.5 4.98 3.5zM2.4 20.5h5.16V9H2.4v11.5zM9.86 9h4.94v1.57h.07c.69-1.3 2.38-2.68 4.9-2.68 5.24 0 6.2 3.45 6.2 7.93V20.5h-5.16v-6.82c0-1.63-.03-3.72-2.27-3.72-2.28 0-2.63 1.79-2.63 3.63V20.5H9.86V9z"/></svg></a>
+      <a href="#" aria-disabled="true" title="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.47.69a4.29 4.29 0 0 0 1.88-2.37 8.5 8.5 0 0 1-2.7 1.03 4.26 4.26 0 0 0-7.26 3.88A12.08 12.08 0 0 1 3.16 4.9a4.26 4.26 0 0 0 1.32 5.69 4.23 4.23 0 0 1-1.93-.53v.05a4.26 4.26 0 0 0 3.42 4.18 4.3 4.3 0 0 1-1.92.07 4.27 4.27 0 0 0 3.99 2.96A8.55 8.55 0 0 1 2 18.12 12.06 12.06 0 0 0 8.29 20c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.35-.02-.53A8.36 8.36 0 0 0 22.46 6z"/></svg></a>
+      <a href="#" aria-disabled="true" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg></a>
+      <a href="#" aria-disabled="true" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2zm0 2C5.95 4 4.5 5.45 4.5 7.25v8.5c0 1.8 1.45 3.25 3.25 3.25h8.5c1.8 0 3.25-1.45 3.25-3.25v-8.5c0-1.8-1.45-3.25-3.25-3.25h-8.5zM12 7.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 2.3a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2zm4.6-2.45a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
     </div>
     <div class="footer-bottom">
       <span>© 2025 Matinex. All rights reserved.</span>
@@ -1652,9 +1673,14 @@ function generatePDF() {
 }
 
 function drawLogo(doc, x, y) {
-  // simple logo replication: blue M-curve + gold dot
+  const logoImg = document.getElementById('reportLogoImg');
+  if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
+    doc.addImage(logoImg, 'PNG', x, y - 14, 40, 40);
+    return;
+  }
+
+  // fallback: simple logo replication with blue M-curve + gold dot
   doc.setDrawColor(45,132,254); doc.setLineWidth(3.5); doc.setLineCap('round'); doc.setLineJoin('round');
-  // Draw M-shape
   const pts = [[x, y+22],[x+10, y+2],[x+18, y+16],[x+26, y+2],[x+36, y+22]];
   for (let i = 0; i < pts.length - 1; i++) doc.line(pts[i][0], pts[i][1], pts[i+1][0], pts[i+1][1]);
   doc.setFillColor(239,175,10); doc.circle(x + 18, y + 28, 3, 'F');
