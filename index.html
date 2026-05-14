@@ -1101,7 +1101,9 @@ function triggerCelebration(callback) {
   if (!overlay) return;
   const balloons = overlay.querySelector('.celebration-balloons');
   balloons.innerHTML = '';
+  overlay.classList.remove('hidden');
   overlay.classList.add('visible');
+  overlay.setAttribute('aria-hidden', 'false');
   const fireworks = overlay.querySelector('.celebration-fireworks');
   fireworks.innerHTML = '';
   const colors = ['#60a5fa','#f43f5e','#f59e0b','#34d399','#a78bfa'];
@@ -1133,6 +1135,8 @@ function triggerCelebration(callback) {
   }
   const endCelebration = () => {
     overlay.classList.remove('visible');
+    overlay.classList.add('hidden');
+    overlay.setAttribute('aria-hidden', 'true');
     if (callback) callback();
   };
   overlay.addEventListener('click', endCelebration, { once: true });
